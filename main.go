@@ -1,20 +1,19 @@
 package main
 
 import (
-    "fmt"
-    "os"
-    "cid-local/internal/app/cid-local"
+	"fmt"
+	"ipfs-cid/internal"
+	"os"
 )
 
 func main() {
-    if len(os.Args) < 2 {
-        fmt.Println("Usage: cid-local <filename>")
-        return
-    }
-    
-    filename := os.Args[1]
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: cid-local <filename>")
+		return
+	}
 
-    cid := cid_local.Cid(filename)
-    fmt.Println(cid)
+	filename := os.Args[1]
+
+	cid := internal.Cid(filename)
+	fmt.Println(cid)
 }
-
