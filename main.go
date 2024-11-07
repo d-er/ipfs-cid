@@ -11,11 +11,10 @@ import (
 )
 
 //export GetCid
-func GetCid(name *C.char) *C.char {
+func GetCid(fileData *C.uchar, length C.int) *C.char {
 
-	filename := C.GoString(name)
-
-	cid := internal.Cid(filename)
+	data := C.GoBytes(unsafe.Pointer(fileData), length)
+	cid := internal.Cid(data)
 	cCid := C.CString(cid)
 
 	// to free the memory

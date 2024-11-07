@@ -13,14 +13,9 @@ import (
 	"github.com/ipfs/go-datastore"
 	dsync "github.com/ipfs/go-datastore/sync"
 	"github.com/multiformats/go-multicodec"
-	"os"
 )
 
-func Cid(filename string) string {
-	fileData, err := os.ReadFile(filename)
-	if err != nil {
-		panic(err)
-	}
+func Cid(fileData []byte) string {
 	fileReader := bytes.NewReader(fileData)
 	ds := dsync.MutexWrap(datastore.NewNullDatastore())
 	bs := blockstore.NewBlockstore(ds)
