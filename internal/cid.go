@@ -2,21 +2,18 @@ package internal
 
 import (
 	"bytes"
-	chunker "github.com/ipfs/boxo/chunker"
-	"github.com/ipfs/go-cid"
-	"os"
-	//    mh "github.com/multiformats/go-multihash"
-	//    "io"
-	dsync "github.com/ipfs/go-datastore/sync"
-	multicodec "github.com/multiformats/go-multicodec"
-	//    unixfile "github.com/ipfs/boxo/ipld/unixfs/file"
 	"github.com/ipfs/boxo/blockservice"
-	blockstore "github.com/ipfs/boxo/blockstore"
-	offline "github.com/ipfs/boxo/exchange/offline"
+	"github.com/ipfs/boxo/blockstore"
+	chunker "github.com/ipfs/boxo/chunker"
+	"github.com/ipfs/boxo/exchange/offline"
 	"github.com/ipfs/boxo/ipld/merkledag"
 	"github.com/ipfs/boxo/ipld/unixfs/importer/balanced"
 	uih "github.com/ipfs/boxo/ipld/unixfs/importer/helpers"
+	"github.com/ipfs/go-cid"
 	"github.com/ipfs/go-datastore"
+	dsync "github.com/ipfs/go-datastore/sync"
+	"github.com/multiformats/go-multicodec"
+	"os"
 )
 
 func Cid(filename string) string {

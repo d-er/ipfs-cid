@@ -1,19 +1,29 @@
 package main
 
+/*
+#include <stdlib.h>
+*/
+import "C"
 import (
-	"fmt"
 	"ipfs-cid/internal"
-	"os"
+	"runtime"
+	"unsafe"
 )
 
-func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: cid-local <filename>")
-		return
-	}
+//export GetCid
+func GetCid(name *C.char) *C.char {
 
-	filename := os.Args[1]
+	filename := C.GoString(name)
 
 	cid := internal.Cid(filename)
-	fmt.Println(cid)
+	cCid := C.CString(cid)
+
+	// to free the memory
+	runtime.SetFinalizer(&cCid, func(ptr **C.char) {
+		C.free(unsafe.Pointer(*ptr))
+	})
+
+	return cCid
 }
+
+func main() {}
